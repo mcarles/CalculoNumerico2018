@@ -20,7 +20,7 @@ while (iter < niter) && (norm(f0) > tol)
     iter = iter + 1;
 end
 if (iter < niter)
-fprintf('Hacen falta %d iteraciones para llegar al error %e con NEWTON_RAPHSON \n',iter,err(iter-1));
+    fprintf('Hacen falta %d iteraciones para llegar al error %e con NEWTON_RAPHSON \n', iter-1 ,err(iter-1));
 else
     fprintf('Hemos hecho %d iteraciones y no ha convergido, error final %e \n', niter, err(iter-1))
 end

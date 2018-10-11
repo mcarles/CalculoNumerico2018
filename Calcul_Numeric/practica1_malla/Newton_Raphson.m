@@ -9,14 +9,15 @@ err = [norm(f0)];
 
 fprintf('INICIO NEWTON_RAPHSON \n')
 
-while (iter < niter) && (norm(f0) > tol)
+while (iter < niter) && (err(iter + 1) > tol)
     %fprintf('iter = %d, error = %e \n',iter,err(iter+1))
     %x0
     Dx = J0\-f0;
     x1 = x0 + Dx;
+    f1 = residu(F, x1);
+    err = [err, norm(f1-f0)];
+    J0 = jacobiana(F, x1); f0 = f1; x0 = x1;
     
-    J0 = jacobiana(F, x1); f0 = residu(F, x1); x0 = x1;
-    err = [err, norm(f0)];
     iter = iter + 1;
 end
 if (iter < niter)

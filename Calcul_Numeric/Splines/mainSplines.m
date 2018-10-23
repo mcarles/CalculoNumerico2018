@@ -21,8 +21,8 @@ close all; clear; clc
 %     (Pot ser util la funcio subplot)
 
 %Dades
-%x = [0,1,3,4,5,7]; y = [1,1.25,1,0.5,0,0.4];
-x = [0,1,3,4,5,7]; y = [1,1.25,2,0.5,0,0.4];
+x = [0,1,3,4,5,7]; y = [1,1.25,1,0.5,0,0.4];
+%x = [0,1,3,4,5,7]; y = [1,1.25,2,0.5,0,0.4];
 
 %Spline C1 cubic amb aproximacio de les derivades
 i = 2:length(x)-1;

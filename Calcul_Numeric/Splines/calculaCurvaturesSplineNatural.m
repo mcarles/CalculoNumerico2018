@@ -20,6 +20,10 @@ for i=2:n-2
    M(i,i-1) = mu(i);
    M(i,i+1) = la(i);
 end
+   M(n-1,n-2) = mu(n-1);
+
+
+M
 
 d2S = M\d;
 

@@ -1,12 +1,11 @@
-function [scalar_cheby] = mat_cheby(m, A, B)
+function [matriu_escalar_cheby] = mat_cheby(m, A, B)
 %Calcula la matriu de productes escalars
 
-syms x;
-P = chebyshevT(m, x);
-
-scalar_cheby = zeros(m);
-for i=1:m
-    scalar_cheby(i,i) = integral(P(i)*P(i), A, B)
+matriu_escalar_cheby = zeros(m+1);
+for i=1:m+1
+    P = @(x) chebyshevT(i-1, x).^2;
+    matriu_escalar_cheby(i,i) = integral(P, A, B);
 end
+
 end
 

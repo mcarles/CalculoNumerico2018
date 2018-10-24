@@ -1,11 +1,11 @@
 clear; close all; clc
 
-rx = linspace(-1,1, 100);
+rx = linspace(-1,1, 101);
 ry = F(rx);
 figure(1)
 plot(rx, ry, 'r-')
 hold on;
-labels = ["Funcion Runge"];
+labels = ['Funcion Runge'];
 
 %Interpolacio
 for n = 2:2:8
@@ -49,7 +49,7 @@ x = linspace(-1,1,n+1);
 figure(2)
 plot(rx, ry, 'r-')
 hold on;
-labels = ["Funcion Runge"];
+labels = ['Funcion Runge'];
 
 for m = 2:2:8
 y = F(x);
@@ -70,33 +70,24 @@ legend(labels)
 n = 100;
 x = linspace(-1,1,n+1);
 
-figure(2)
+figure(3)
 plot(rx, ry, 'r-')
 hold on;
-labels = ["Funcion Runge"];
+labels = ['Funcion Runge'];
 
 for m = 2:2:8
-xd = [];
+MChev = mat_cheby(m, -1, 1);
+TIChev = TI_cheby(m, -1, 1, @F);
 
-x01 = [0:1/20:1];
-h=x(2:end)-x(1:end-1);
-    for i=1:length(x)-1
-        xs = x(i)+x01*h(i); %valors de x a l'interval
-        xd = [xd xs];
-    end
+C = MChev\TIChev;
+C = fliplr(C');
 
-y = F(x);
-yd = F(xd);
-
-Q = integral(F,-1,1);
-P = chebyshevT(m, x);
-%P = polyfit(x, y, m);
-%Y = polyval(P,x);
+Y = polyval(C, x);
 
 plot(x, Y, '-')
 hold on;
 
-labeli = ['Polyval m = ', num2str(m)];
+labeli = ['Chebyshev m = ', num2str(m)];
 labels = [labels labeli];
 end
 legend(labels)

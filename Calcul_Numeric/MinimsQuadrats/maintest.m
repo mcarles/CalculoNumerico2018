@@ -9,8 +9,8 @@ hold on;
 labels = ['Funcion Runge'];
 
 
-MChev = mat_cheby(m, -1, 1);
-TIChev = TI_cheby(m, -1, 1, @F);
+MChev = mat_leg(m, -1, 1);
+TIChev = TI_leg(m, -1, 1, @F);
 
 C = MChev\TIChev;
 

@@ -5,7 +5,7 @@ ry = F(rx);
 figure(1)
 plot(rx, ry, 'r-')
 hold on;
-labels = ['Funcion Runge'];
+labels = ["Funcion Runge"];
 
 %Interpolacio
 for n = 2:2:8
@@ -49,7 +49,7 @@ x = linspace(-1,1,n+1);
 figure(2)
 plot(rx, ry, 'r-')
 hold on;
-labels = ['Funcion Runge'];
+labels = ["Funcion Runge"];
 
 for m = 2:2:8
 y = F(x);
@@ -73,7 +73,7 @@ x = linspace(-1,1,n+1);
 figure(3)
 plot(rx, ry, 'r-')
 hold on;
-labels = ['Funcion Runge'];
+labels = ["Funcion Runge"];
 
 for m = 2:2:8
 MChev = mat_cheby(m, -1, 1);
@@ -88,6 +88,32 @@ plot(x, Y, '-')
 hold on;
 
 labeli = ['Chebyshev m = ', num2str(m)];
+labels = [labels labeli];
+end
+legend(labels)
+
+%Legendre
+n = 100;
+x = linspace(-1,1,n+1);
+
+figure(4)
+plot(rx, ry, 'r-')
+hold on;
+labels = ["Funcion Runge"];
+
+for m = 2:2:8
+MLeg = mat_leg(m, -1, 1);
+TILeg = TI_leg(m, -1, 1, @F);
+
+C = MLeg\TILeg;
+C = fliplr(C');
+
+Y = polyval(C, x);
+
+plot(x, Y, '-')
+hold on;
+
+labeli = ['Legendre m = ', num2str(m)];
 labels = [labels labeli];
 end
 legend(labels)

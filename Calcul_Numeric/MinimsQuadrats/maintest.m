@@ -1,4 +1,4 @@
-m = 8;
+m = 100;
 x = linspace(-1,1, 101);
 
 rx = linspace(-1,1, 101);
@@ -6,7 +6,7 @@ ry = F(rx);
 figure
 plot(rx, ry, 'r-')
 hold on;
-labels = ['Funcion Runge'];
+labels = 'Funcion Runge';
 
 
 MChev = mat_leg(m, -1, 1);

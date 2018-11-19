@@ -1,0 +1,14 @@
+function [S,nint] = IntAdapt(f,a,b,tol,nint)
+    S1 = SimpsonSimple(f,a,b);
+    S2 = SimpsonSimple(f,a,(a+b)/2);
+    S3 = SimpsonSimple(f,(a+b)/2,b);
+    Eab = abs(S1 - (S2 + S3));
+    if (Eab < tol*(b-a))
+       S = S1;
+       return
+    else
+       S = IntAdapt(f,(a+b)/2,b,tol,nint) + IntAdapt(f,a,(a+b)/2,tol,nint);
+       nint = nint + 1
+    end
+end
+

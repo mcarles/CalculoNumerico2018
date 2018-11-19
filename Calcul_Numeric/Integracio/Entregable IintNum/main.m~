@@ -1,0 +1,6 @@
+f = @(x) 2*x;
+a = 0;
+b = 1;
+tol = 10.^-3;
+Ie = integral(f,a,b);
+Ia = IntA

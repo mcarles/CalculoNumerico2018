@@ -1,9 +1,0 @@
-function [x,y] = euler(f,a,b,vi,n)
-    x = linspace(a,b,n);
-    h = x(2) - x(1);
-    y = vi;
-    for i = 2:n
-       y = [] 
-    end
-end
-

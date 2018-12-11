@@ -1,4 +1,4 @@
-function [Z, eabs, err] = Euler(F, x, Z, m, R, g)
+function [Z, eabs, err] = Euler(F, x, Z, m)
     
     h = abs(x(2)-x(1))/(m+1);
     eabs = [];
@@ -10,6 +10,6 @@ function [Z, eabs, err] = Euler(F, x, Z, m, R, g)
 %             eabs = [eabs, norm( K - Z(:, i/2) , 2)]; % Norma de X_(i) - X_(2*i)
 %             err = [err, eabs(i/2)/norm(K,2)];
 %         end
-        Z = [Z, K + h.* F(x, K, R, g)];
+        Z = [Z, K + h.* F(x, K)];
     end
 end

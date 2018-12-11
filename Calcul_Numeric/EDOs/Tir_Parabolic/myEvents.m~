@@ -1,0 +1,6 @@
+function [] = myEvents(edofun, x, z)
+    istermin = 1;
+    direction = 1;
+    
+end
+

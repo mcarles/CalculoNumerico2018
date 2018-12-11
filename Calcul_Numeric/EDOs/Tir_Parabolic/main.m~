@@ -35,22 +35,11 @@ grid on
 
 
 tspan = [0, 100];
-IC = [XY', V'];
+IC = alpha0;
 options = odeset('Events', 'myEvents');
 [x2,z2] = ode45(@F, tspan, IC, options);
 
 figure(3)
 plot(x2, z2(:, 2), '*-');
-grid on
-
-
-TH = fzero(@angle, th);
-XY = [0, 0];
-V = v0*[cos(TH), sin(TH)];
-IC = [XY, V];
-[x3,z3] = ode45(@F, tspan, IC, options);
-
-figure(4)
-plot(z3(:,1), z3(:, 2), '*-');
 grid on
 

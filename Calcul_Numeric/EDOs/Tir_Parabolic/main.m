@@ -16,21 +16,31 @@ Z0 = Z(XY, V);
 x = [0, t];
 
 %Euler
+
 [Y, eabs, err] = Euler(@F, x, Z0, m);
-[Y2, eabs, err] = Euler(@F, x, Z0, 2*m);
-
-for i = 1:length(Y(1,:))-1
-    eabs = [eabs, norm( [Y(1, i), Y(2, i)] - [Y2(1, 2*i), Y2(2, 2*i)] ,2)];
-    err = [err, eabs(i)/norm([Y2(1, 2*i), Y2(2, 2*i)])];
-end
-
 figure(1)
 x = linspace(0, t, m+1);
 plot(Y(1,:), Y(2, :), '*-');
 grid on
 
+
+progerr = [];
+for m = 1:200
+    [Y1, eabs, err] = Euler(@F, x, Z0, m);
+    [Y2, eabs, err] = Euler(@F, x, Z0, 2*m);
+
+    for i = 1:length(Y1(1,:))-1
+        eabs = [eabs, norm( [Y1(1, i), Y1(2, i)] - [Y2(1, 2*i), Y2(2, 2*i)] ,2)];
+        err = [err, eabs(i)/norm([Y2(1, 2*i), Y2(2, 2*i)])];
+    end
+    
+    progerr = [progerr, err(end)];
+end
+
+
+
 figure(2)
-plot([1:1:m], err, 'o-')
+plot(log([1:1:length(progerr)]), log(progerr), 'o-')
 grid on
 
 

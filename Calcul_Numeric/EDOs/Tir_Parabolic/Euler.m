@@ -1,6 +1,6 @@
-function [Z, eabs, err] = Euler(F, x, Z, m)
+function [Z] = Euler(F, x, Z, m)
     
-    h = abs(x(2)-x(1))/(m+1);
+    h = abs(x(2)-x(1))/m;
     eabs = [];
     err = [];
     

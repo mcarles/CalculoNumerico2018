@@ -17,30 +17,36 @@ x = [0, t];
 
 %Euler
 
-[Y, eabs, err] = Euler(@F, x, Z0, m);
+[Y] = Euler(@F, x, Z0, m);
 figure(1)
 x = linspace(0, t, m+1);
 plot(Y(1,:), Y(2, :), '*-');
 grid on
 
+x = [0, t];
+[Yerr1] = Euler(@F, x, Z0, 200);
+[Yerr2] = Euler(@F, x, Z0, 400);
+
+eabs = norm([Yerr1(1,end) - Yerr2(1,end), Yerr1(2,end) - Yerr2(2,end)] , 2)
+err = eabs/norm([Yerr2(1, end), Yerr2(2, end)], 2)
 
 progerr = [];
 for m = 1:200
-    [Y1, eabs, err] = Euler(@F, x, Z0, m);
-    [Y2, eabs, err] = Euler(@F, x, Z0, 2*m);
-
-    for i = 1:length(Y1(1,:))-1
-        eabs = [eabs, norm( [Y1(1, i), Y1(2, i)] - [Y2(1, 2*i), Y2(2, 2*i)] ,2)];
-        err = [err, eabs(i)/norm([Y2(1, 2*i), Y2(2, 2*i)])];
-    end
+    [Y1] = Euler(@F, x, Z0, m);
+    [Y2] = Euler(@F, x, Z0, 2*m);
     
-    progerr = [progerr, err(end)];
+    eabs = norm([Y1(1,end) - Y2(1,end), Y1(2,end) - Y2(2,end)] , 2);
+    err = eabs/norm([Y2(1, end), Y2(2, end)], 2);
+    
+    progerr = [progerr, err];
 end
 
-
+progerr(end)
 
 figure(2)
-plot(log([1:1:length(progerr)]), log(progerr), 'o-')
+plot(log10([1:1:length(progerr)]), log10(progerr), 'x-')
+xlabel('log10(Intervals)')
+ylabel('log10(r)')
 grid on
 
 

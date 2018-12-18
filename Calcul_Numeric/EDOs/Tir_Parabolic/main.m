@@ -20,8 +20,10 @@ x = [0, t];
 [Y] = Euler(@F, x, Z0, m);
 figure(1)
 x = linspace(0, t, m+1);
-plot(Y(1,:), Y(2, :), '*-');
+plot(Y(1,:), Y(2, :), 'bo-');
 grid on
+xlabel('x')
+ylabel('y')
 
 x = [0, t];
 [Yerr1] = Euler(@F, x, Z0, 200);
@@ -44,7 +46,7 @@ end
 progerr(end)
 
 figure(2)
-plot(log10([1:1:length(progerr)]), log10(progerr), 'x-')
+plot(log10([1:1:length(progerr)]), log10(progerr), 'b.-')
 xlabel('log10(Intervals)')
 ylabel('log10(r)')
 grid on
@@ -56,7 +58,7 @@ options = odeset('Events', 'myEvents');
 [x2,z2] = ode45(@F, tspan, IC, options);
 
 figure(3)
-plot(x2, z2(:, 2), '*-');
+plot(x2, z2(:, 2), 'b*-');
 grid on
 
 
@@ -67,6 +69,6 @@ IC = [XY, V];
 [x3,z3] = ode45(@F, tspan, IC, options);
 
 figure(4)
-plot(z3(:,1), z3(:, 2), '*-');
+plot(z3(:,1), z3(:, 2), 'bx-');
 grid on
 

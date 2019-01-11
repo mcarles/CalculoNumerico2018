@@ -1,4 +1,4 @@
-function [res] = jacobiana_aprox(x0 ,f, h)
+function [res] = jacobiana_aprox(x0, f, h)
     res = zeros(length(x0), 1);
     aprox = zeros(length(x0), 1);
         

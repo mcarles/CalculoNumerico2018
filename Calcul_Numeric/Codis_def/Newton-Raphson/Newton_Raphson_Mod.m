@@ -1,4 +1,4 @@
-function [x, r, err] = Newton_Raphson(x0, jacobiana, residu, niter, tol)
+function [x, r, err] = Newton_Raphson_Mod(x0, jacobiana, residu, niter, tol)
 
 J0 = jacobiana(x0);
 f0 = residu(x0);
@@ -12,7 +12,7 @@ r = [f0];
 %err(i) = r^(i-1).
 
 %fem primera iteracio fora per temes de vector
-fprintf('INICIO NEWTON_RAPHSON \n')
+fprintf('INICIO NEWTON_RAPHSON_MOD \n')
 
     Dx = J0\-f0;
     x1 = x0 + Dx;
@@ -36,6 +36,6 @@ while (iter < niter) && (err(iter) > tol)
     iter = iter + 1;
 end
 
-fprintf('Hacen falta %d iteraciones para llegar al error %e con NEWTON_RAPHSON \n',iter-1, err(iter));
+fprintf('Hacen falta %d iteraciones para llegar al error %e con NEWTON_RAPHSON_MOD \n',iter-1, err(iter));
 end
 

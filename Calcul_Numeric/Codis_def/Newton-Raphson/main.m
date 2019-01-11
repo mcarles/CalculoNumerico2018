@@ -1,6 +1,6 @@
 clear; close all; clc
 
-x0 = [1];
+x0 = [3];
 niter = 20;
 tol = 0.5*10^-5;
 

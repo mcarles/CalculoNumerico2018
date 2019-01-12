@@ -24,7 +24,7 @@ fprintf('INICIO NEWTON_RAPHSON \n')
     iter = iter + 1;
 
 while (iter < niter) && (err(iter) > tol)
-    fprintf('iter = %d, error = %e \n',iter-1 ,err(iter))
+    fprintf('iter = %d, error = %e \n',iter ,err(iter))
     x0
     Dx = J0\-f0;
     x1 = x0 + Dx;

@@ -1,4 +1,5 @@
 function [res] = residu(x)
-res = 3*x.^5 - 8*x.^4 - 12*x.^3 + 32*x.^2 + 12*x - 32;
+res = [cos(x(1))*(8*sin(x(1)) + 3* sin(x(2)) ) - 9*sin(x(1));
+       cos(x(2))*(3*sin(x(1)) + 2* sin(x(2)) ) - 3*sin(x(2)) ];
 end
 

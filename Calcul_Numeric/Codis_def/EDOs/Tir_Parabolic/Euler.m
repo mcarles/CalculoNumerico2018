@@ -1,5 +1,7 @@
 function [Z] = Euler(F, x, Z, m)
-    
+    %F es la edo, x es la variable en la que se evaluan las soluciones (el tiempo
+    %en los problemas de fisica, vaya), Z es la condicion inicial, m el nº
+    %de pasos
     h = abs(x(2)-x(1))/m;
     eabs = [];
     err = [];

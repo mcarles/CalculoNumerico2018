@@ -1,5 +1,6 @@
 function diff = angle(th)
-    
+    %Esta funcion resuelve el PVI respecto la condicion inicial que estamos
+    %intentando encontrar (el angulo theta en este caso)
     XY = [0, 0];
     V = 100*[cos(th), sin(th)];
     IC = [XY, V];

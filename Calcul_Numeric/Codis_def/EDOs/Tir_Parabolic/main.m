@@ -10,14 +10,16 @@ m = 20;
 XY = [0; 0];
 V = v0*[cos(th); sin(th)];
 
-alpha0 = [XY, V];
-Z0 = Z(XY, V);
+Z0 = [XY; V];
+%alpha0 = [XY; V];
+%Z0 = Z(XY, V);
 
 x = [0, t];
 
 %Euler
-
+[XY; V];
 [Y] = Euler(@F, x, Z0, m);
+%[Y] = Euler(@F, x, alpha0, m);
 figure(1)
 x = linspace(0, t, m+1);
 plot(Y(1,:), Y(2, :), 'bo-');
@@ -29,8 +31,8 @@ x = [0, t];
 [Yerr1] = Euler(@F, x, Z0, 200);
 [Yerr2] = Euler(@F, x, Z0, 400);
 
-eabs = norm([Yerr1(1,end) - Yerr2(1,end), Yerr1(2,end) - Yerr2(2,end)] , 2)
-err = eabs/norm([Yerr2(1, end), Yerr2(2, end)], 2)
+eabs = norm([Yerr1(1,end) - Yerr2(1,end), Yerr1(2,end) - Yerr2(2,end)] , 2);
+err = eabs/norm([Yerr2(1, end), Yerr2(2, end)], 2);
 
 progerr = [];
 for m = 1:200
@@ -51,7 +53,7 @@ xlabel('log10(Intervals)')
 ylabel('log10(r)')
 grid on
 
-
+%Test de la funcio events + ode45
 tspan = [0, 100];
 IC = [XY', V'];
 options = odeset('Events', 'myEvents');
@@ -61,11 +63,11 @@ figure(3)
 plot(x2, z2(:, 2), 'b*-');
 grid on
 
-
+%El metode del tret comença aqui
 TH = fzero(@angle, th);
 XY = [0, 0];
 V = v0*[cos(TH), sin(TH)];
-IC = [XY, V];
+IC = [XY, V];https://helpdeskgeek.com/linux-tips/forcefully-close-a-program-in-ubuntu/
 [x3,z3] = ode45(@F, tspan, IC, options);
 
 figure(4)

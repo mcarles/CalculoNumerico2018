@@ -32,12 +32,12 @@ grid on
 
 %Progerror EulerEnrere
 progerr2 = [];
-for m = 2:10
+for m = 2:50
     [x1,Y1] = EulerEnrere(@f, I, Y0, m);
     [x2,Y2] = EulerEnrere(@f, I, Y0, 2*m);
     
-    eabs = norm(Y1(:,end) - Y2(:,end) , 2);
-    err = eabs/norm(Y2(:, end), 2);
+    eabs = norm([Y1(1,end) - Y2(1,end), Y1(2,end) - Y2(2,end)] , 2);
+    err = eabs/norm([Y2(1, end), Y2(2, end)], 2);
     
     progerr2 = [progerr2, err];
 end
@@ -52,12 +52,12 @@ grid on
 
 %Progerror DifCent
 progerr3 = [];
-for m = 2:50
+for m = 1:50
     [x1,Y1] = DifCent(@f, I, Y0, m);
     [x2,Y2] = DifCent(@f, I, Y0, 2*m);
     
-    eabs = norm(Y1(:,end) - Y2(:,end) , 2);
-    err = eabs/norm(Y2(:, end), 2);
+    eabs = norm([Y1(1,end) - Y2(1,end), Y1(2,end) - Y2(2,end)] , 2);
+    err = eabs/norm([Y2(1, end), Y2(2, end)], 2);
     
     progerr3 = [progerr3, err];
 end
@@ -72,12 +72,12 @@ grid on
 
 %Progerror Heun
 progerr4 = [];
-for m = 2:50
+for m = 1:50
     [x1,Y1] = DifCent(@f, I, Y0, m);
     [x2,Y2] = DifCent(@f, I, Y0, 2*m);
     
-    eabs = norm(Y1(:,end) - Y2(:,end) , 2);
-    err = eabs/norm(Y2(:, end), 2);
+    eabs = norm([Y1(1,end) - Y2(1,end), Y1(2,end) - Y2(2,end)] , 2);
+    err = eabs/norm([Y2(1, end), Y2(2, end)], 2);
     
     progerr4 = [progerr4, err];
 end
